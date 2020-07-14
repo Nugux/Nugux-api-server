@@ -6,6 +6,12 @@ server:
 spring:
   application:
     name: nugux-api-server
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+    url: jdbc:postgresql://localhost:5432/nugux
+    username: nugux
+    password: nugux
 
 logging:
   level:

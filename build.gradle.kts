@@ -15,6 +15,7 @@ repositories {
 
 extra.apply {
     set("kotlinGradlePluginVersion", "1.3.61")
+    set("postgresqlVersion", "42.2.14")
     set("gsonVersion", "2.8.5")
 }
 
@@ -23,6 +24,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${extra["kotlinGradlePluginVersion"]}")
 
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.postgresql:postgresql:${extra["postgresqlVersion"]}")
     implementation("com.google.code.gson:gson:${extra["gsonVersion"]}")
 }
 
