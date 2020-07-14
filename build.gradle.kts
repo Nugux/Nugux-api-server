@@ -1,12 +1,16 @@
 plugins {
+    id("org.springframework.boot") version "2.2.0.RELEASE"
+    id("io.spring.dependency-management") version "1.0.9.RELEASE"
     kotlin("jvm") version "1.3.61"
 }
 
 group = "com.nugux"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
+    mavenLocal()
+    jcenter()
 }
 
 extra.apply {
@@ -18,6 +22,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${extra["kotlinGradlePluginVersion"]}")
 
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.google.code.gson:gson:${extra["gsonVersion"]}")
 }
 
