@@ -15,27 +15,32 @@ class TrafficLineParser {
 
     fun makeObjects(jsonText: String, target: LatLng): List<TrafficLine> {
         jsonObject = getJsonObject(jsonText)
-        return getJsonArray().map { jsonElement ->
+        val t:List<TrafficLine?> = getJsonArray().map { jsonElement ->
             val currentObject = jsonElement as JsonObject
             val geometry = currentObject.getAsJsonObject("geometry")
-            val translated = geometry.getAsJsonArray("coordinates").map {
-                val arr = it.asJsonArray
-                LatLng(
-                    lng = arr[0].asDouble,
-                    lat = arr[1].asDouble
+            if(geometry.get("type").asString != "LineString") {
+                null
+            } else {
+                val translated = geometry.getAsJsonArray("coordinates").map {
+                    val arr = it.asJsonArray
+                    LatLng(
+                        lng = arr[0].asDouble,
+                        lat = arr[1].asDouble
+                    )
+                }
+                val properties = currentObject.getAsJsonObject("properties")
+                // TODO : 도로 중간 좌표의 기준??
+                val center = translated[translated.size / 2]
+                TrafficLine(
+                    roadId = properties.get("index").asInt,
+                    congestion = properties.get("congestion").asInt,
+                    speed = properties.get("speed").asDouble,
+                    center = center,
+                    target = target
                 )
             }
-            val properties = currentObject.getAsJsonObject("properties")
-            // TODO : 도로 중간 좌표의 기준??
-            val center = translated[translated.size / 2]
-            TrafficLine(
-                roadId = properties.get("index").asInt,
-                congestion = properties.get("congestion").asInt,
-                speed = properties.get("speed").asDouble,
-                center = center,
-                target = target
-            )
         }.toList()
+        return t.filterNotNull()
     }
     private fun getJsonObject(jsonText: String) = jsonParser.parse(jsonText) as JsonObject
 
