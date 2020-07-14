@@ -4,6 +4,11 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.nugux.model.TouristSpot
+import com.vividsolutions.jts.geom.Coordinate
+import com.vividsolutions.jts.geom.GeometryFactory
+import com.vividsolutions.jts.geom.Point
+import com.vividsolutions.jts.geom.PrecisionModel
+import com.vividsolutions.jts.io.WKTReader
 
 class TouristSpotJsonParser {
     private val jsonParser: JsonParser = JsonParser()
@@ -23,16 +28,16 @@ class TouristSpotJsonParser {
             val address = getStringValue(jsonObject, "address")
             val postalCode = getStringValue(jsonObject, "postalCode")
             val description = getStringValue(jsonObject, "description")
-            val lat = getStringValue(jsonObject, "lat1")
-            val long = getStringValue(jsonObject, "long1")
+            val lat = getStringValue(jsonObject, "lat1").toDouble()
+            val long = getStringValue(jsonObject, "long1").toDouble()
 
             TouristSpot(
                 name = name,
                 address = address,
                 postalCode = postalCode,
                 description = description,
-                lat = lat.toFloat(),
-                long = long.toFloat()
+                lat = lat,
+                long = long
             )
         }.toList()
     }

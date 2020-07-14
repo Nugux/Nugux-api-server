@@ -12,6 +12,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/nugux
     username: nugux
     password: nugux
+    platform: postgres
+  jpa:
+    database-platform: org.hibernate.spatial.dialect.postgis.PostgisDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.spatial.dialect.postgis.PostgisDialect
 
 logging:
   level:
