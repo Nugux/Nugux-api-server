@@ -31,7 +31,6 @@ data class TouristSpot(
     @Column(name = COL_LONG)
     val long: Double
 ) {
-
     companion object {
         const val COL_ID: String = "id"
         const val COL_NAME: String = "name"
@@ -41,4 +40,8 @@ data class TouristSpot(
         const val COL_LAT: String = "lat"
         const val COL_LONG: String = "long"
     }
+
+    fun getStateFromAddress() = address.split(" ")[0]
+
+    fun getCityFromAddress() = address.split(" ")[1]
 }
