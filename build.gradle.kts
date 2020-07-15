@@ -21,6 +21,7 @@ extra.apply {
     set("kotlinGradlePluginVersion", "1.3.61")
     set("postgresqlVersion", "42.2.14")
     set("hibernateVersion", "5.4.1.Final")
+    set("swaggerVersion", "2.9.2")
     set("jtsVersion", "1.13")
     set("gsonVersion", "2.8.5")
 }
@@ -35,6 +36,8 @@ dependencies {
     implementation("org.hibernate:hibernate-spatial:${extra["hibernateVersion"]}")
     implementation("org.hibernate:hibernate-spatial:${extra["hibernateVersion"]}")
     implementation("org.hibernate:hibernate-core:${extra["hibernateVersion"]}")
+    implementation("io.springfox:springfox-swagger2:${extra["swaggerVersion"]}")
+    implementation("io.springfox:springfox-swagger-ui:${extra["swaggerVersion"]}")
     implementation("com.vividsolutions:jts:${extra["jtsVersion"]}")
     implementation("com.google.code.gson:gson:${extra["gsonVersion"]}")
 
