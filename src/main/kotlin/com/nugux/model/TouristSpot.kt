@@ -5,8 +5,13 @@ import com.vividsolutions.jts.geom.Point
 import org.hibernate.annotations.Type
 import javax.persistence.*
 
-enum class SpotLevel {
-    STATE, CITY
+enum class SpotLevel(val value: Int) {
+    STATE(0), CITY(1);
+
+    companion object {
+        private val values = values();
+        fun getByValue(value: Int) = values.firstOrNull { it.value == value }
+    }
 }
 
 data class TouristSpotDto(

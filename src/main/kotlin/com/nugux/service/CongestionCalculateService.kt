@@ -9,7 +9,9 @@ import com.nugux.util.TrafficLineParser
 import com.nugux.util.getProjectKey
 import com.nugux.util.getTrafficInformation
 import com.nugux.util.readCsv
+import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
+import java.lang.Exception
 import java.util.*
 import java.util.stream.Stream
 import kotlin.streams.toList
@@ -19,6 +21,7 @@ class CongestionCalculateService(private val projectKey: String,
                                  private val dailySpotCongestionRepository: DailySpotCongestionRepository): ILogging by LoggingImpl<CongestionCalculateService>() {
     private val basicCongestionCalculator: BasicCongestionCalculator = BasicCongestionCalculator()
 
+    @Scheduled(cron = "0 0 12 * * ?", zone = "Asia/Seoul")
     fun updateDailySpotCongestion() {
         dailySpotCongestionRepository.saveAll(getDailySpotCongestion())
     }
@@ -65,10 +68,14 @@ class CongestionCalculateService(private val projectKey: String,
     }
 
     private fun getAvgCongestion(lat: Double, lng: Double, zoomLevel: Int): Double {
-        val latLng = LatLng(lat = lat, lng = lng)
-        val trafficInformation = getTrafficInformation(latLng, zoomLevel, projectKey)
-        val trafficLines = TrafficLineParser().makeObjects(trafficInformation, latLng)
-        return basicCongestionCalculator.getCongestion(trafficLines)
+        return try {
+            val latLng = LatLng(lat = lat, lng = lng)
+            val trafficInformation = getTrafficInformation(latLng, zoomLevel, projectKey)
+            val trafficLines = TrafficLineParser().makeObjects(trafficInformation, latLng)
+            basicCongestionCalculator.getCongestion(trafficLines)
+        } catch (e: Exception) {
+            0.0
+        }
     }
 
     companion object {

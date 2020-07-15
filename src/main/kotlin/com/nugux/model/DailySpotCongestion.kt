@@ -1,5 +1,4 @@
 package com.nugux.model
-
 import java.time.LocalDate
 import javax.persistence.*
 
@@ -21,6 +20,7 @@ data class DailySpotCongestion(
     val congestion: Double,
 
     @Column(name = COL_SPOT_LEVEL, nullable = true)
+    @Enumerated(EnumType.STRING)
     val spotLevel: SpotLevel,
 
     @Column(name = COL_UPDATE_DATE, nullable = true)
