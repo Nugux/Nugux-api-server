@@ -25,7 +25,7 @@ class Swagger {
             .groupName(version)
             .select()
             .apis(RequestHandlerSelectors.basePackage("com.nugux.controller"))
-            .paths(PathSelectors.ant("/v1/api/**"))
+            .paths(PathSelectors.ant("/api/v1/**"))
             .build()
             .apiInfo(apiInfo(title!!, version!!))
     }
