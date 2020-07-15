@@ -1,6 +1,14 @@
 package com.nugux.util
 
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.util.*
+
 fun getProjectKey(): String {
-    //TODO Read key From property
-    return ""
+    val properties = Properties()
+    val propertiesFile = System.getProperty("user.dir") + "\\key.properties";
+    val inputStream = FileInputStream(propertiesFile)
+    properties.load(inputStream)
+
+    return properties["ProjectKey"] as String
 }
