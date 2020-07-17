@@ -1,23 +1,35 @@
-CREATE TABLE public.tourist_spots
+create table tourist_spots
 (
-    id integer NOT NULL DEFAULT nextval('tourist_spots_id_seq'::regclass),
-    name character varying COLLATE pg_catalog."default" NOT NULL,
-    address character varying COLLATE pg_catalog."default",
-    postal_code character varying COLLATE pg_catalog."default",
-    description character varying COLLATE pg_catalog."default",
-    lat double precision NOT NULL,
-    "long" double precision NOT NULL,
-    CONSTRAINT tourist_spots_pkey PRIMARY KEY (id)
-)
+    id serial not null
+        constraint tourist_spots_pkey
+            primary key,
+    name varchar not null,
+    address varchar,
+    postal_code varchar,
+    description varchar,
+    lat double precision not null,
+    long double precision not null
+);
 
-CREATE TABLE public.daily_spot_congestions
+alter table tourist_spots owner to postgres;
+
+
+
+create table daily_spot_congestions
 (
-    id integer NOT NULL DEFAULT nextval('daily_spot_congestions_id_seq'::regclass),
-    state character varying COLLATE pg_catalog."default" NOT NULL,
-    city character varying COLLATE pg_catalog."default",
-    congestion double precision NOT NULL,
-    spot_level character varying COLLATE pg_catalog."default" NOT NULL,
-    update_date date NOT NULL,
-    CONSTRAINT daily_spot_congestions_pkey PRIMARY KEY (id),
-    CONSTRAINT unique_state_city_congestion_key UNIQUE (state, city, spot_level)
-)
+    id serial not null
+        constraint daily_spot_congestions_pkey
+            primary key,
+    state varchar not null,
+    city varchar,
+    congestion double precision not null,
+    spot_level varchar not null,
+    update_date date not null,
+    lat double precision default 0 not null,
+    long double precision default 0 not null,
+    constraint unique_state_city_congestion_key
+        unique (state, city, spot_level)
+);
+
+alter table daily_spot_congestions owner to postgres;
+

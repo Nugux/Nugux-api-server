@@ -2,6 +2,15 @@ package com.nugux.model
 import java.time.LocalDate
 import javax.persistence.*
 
+
+data class DailySpotCongestionDto(
+    val state: String,
+    val city: String?,
+    val lat: Double,
+    val long: Double,
+    val congestion: Double
+)
+
 @Entity
 @Table(name = "daily_spot_congestions", schema = "public", uniqueConstraints = [UniqueConstraint(columnNames = ["state", "city", "spot_level"])])
 data class DailySpotCongestion(
@@ -15,6 +24,12 @@ data class DailySpotCongestion(
 
     @Column(name = COL_CITY, nullable = true)
     val city: String?,
+
+    @Column(name = COL_LAT, nullable = false)
+    val lat: Double,
+
+    @Column(name = COL_LONG, nullable = false)
+    val long: Double,
 
     @Column(name = COL_CONGESTION, nullable = true)
     val congestion: Double,
@@ -30,6 +45,8 @@ data class DailySpotCongestion(
         const val COL_ID: String = "id"
         const val COL_STATE: String = "state"
         const val COL_CITY: String = "city"
+        const val COL_LAT: String = "lat"
+        const val COL_LONG: String = "long"
         const val COL_CONGESTION: String = "congestion"
         const val COL_SPOT_LEVEL: String = "spot_level"
         const val COL_UPDATE_DATE: String = "update_date"

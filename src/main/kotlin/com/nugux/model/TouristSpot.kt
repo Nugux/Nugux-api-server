@@ -14,17 +14,6 @@ enum class SpotLevel(val value: Int) {
     }
 }
 
-data class TouristSpotDto(
-    val id: Long,
-    val name: String,
-    val address: String,
-    val postalCode: String,
-    val description: String,
-    val lat: Double,
-    val long: Double,
-    val congestion: Int
-)
-
 @Entity
 @Table(name = "tourist_spots", schema = "public")
 data class TouristSpot(
