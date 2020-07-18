@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: nugux-api-server
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+    url: jdbc:postgresql://localhost:5432/nugux
+    username: nugux
+    password: nugux
+    platform: postgres
+  jpa:
+    database-platform: org.hibernate.spatial.dialect.postgis.PostgisDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.spatial.dialect.postgis.PostgisDialect
+
+logging:
+  level:
+    org:
+      springframework:
+        security: info
+        boot: info
+        web: info
