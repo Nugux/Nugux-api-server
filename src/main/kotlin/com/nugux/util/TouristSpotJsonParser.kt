@@ -4,11 +4,7 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.nugux.model.TouristSpot
-import com.vividsolutions.jts.geom.Coordinate
-import com.vividsolutions.jts.geom.GeometryFactory
-import com.vividsolutions.jts.geom.Point
-import com.vividsolutions.jts.geom.PrecisionModel
-import com.vividsolutions.jts.io.WKTReader
+import kotlin.random.Random
 
 class TouristSpotJsonParser {
     private val jsonParser: JsonParser = JsonParser()
@@ -20,6 +16,10 @@ class TouristSpotJsonParser {
         const val KEY_VALUE = "value"
     }
 
+    /*
+        원래는 혼잡도를 TMap API를 통해 daily로 schedule job을 이용해 저장해야 되나 API 사용량 한계(무료 계정)으로 인하여
+        random 값으로 daily가 아닌 관광지 정보에 static하게 저장하여 계산에 이용
+     */
     fun makeObjects(jsonFilePath: String): List<TouristSpot> {
         jsonObject = getJsonObject(getJsonText(jsonFilePath))
         return getJsonArray().map { jsonElement ->
@@ -37,7 +37,8 @@ class TouristSpotJsonParser {
                 postalCode = postalCode,
                 description = description,
                 lat = lat,
-                long = long
+                long = long,
+                congestion = Random.nextDouble(1.0, 3.5)
             )
         }.toList()
     }

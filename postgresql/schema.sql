@@ -8,12 +8,11 @@ create table tourist_spots
     postal_code varchar,
     description varchar,
     lat double precision not null,
-    long double precision not null
+    long double precision not null,
+    congestion double precision default 0 not null
 );
 
 alter table tourist_spots owner to postgres;
-
-
 
 create table daily_spot_congestions
 (

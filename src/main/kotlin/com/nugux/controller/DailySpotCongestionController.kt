@@ -19,7 +19,7 @@ import java.util.*
 
 @RestController
 @RequestMapping(REST_API_V_1 + DAILY_CONGESTION_URL)
-@Api(value = REST_API_V_1 + DAILY_CONGESTION_URL, tags = ["Tourist Spot"])
+@Api(value = REST_API_V_1 + DAILY_CONGESTION_URL, tags = ["Daily Congestion"])
 class DailySpotCongestionController(private val dailySpotCongestionService: DailySpotCongestionService) {
     @GetMapping
     @ApiOperation(value = "get daily congestion info", response = DailySpotCongestionDto::class)
