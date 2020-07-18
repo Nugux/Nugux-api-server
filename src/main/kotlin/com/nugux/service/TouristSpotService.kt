@@ -46,7 +46,7 @@ class TouristSpotService(private val touristSpotRepository: TouristSpotRepositor
 
     private fun getImgById(id: Long): String {
         val imgIndex = (id % 10).toInt()
-        return "/tourist_spot_img/tourist_spot_$imgIndex.jpg"
+        return "/img/tourist_spot_$imgIndex.jpg"
     }
 
     companion object {
