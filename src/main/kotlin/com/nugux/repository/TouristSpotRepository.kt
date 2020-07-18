@@ -1,5 +1,6 @@
 package com.nugux.repository
 
+import com.nugux.model.SpotCongestion
 import com.nugux.model.TouristSpot
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
@@ -13,4 +14,9 @@ interface TouristSpotRepository: JpaRepository<TouristSpot, Long> {
                                @Param("swlong")southWestLong: Double,
                                @Param("nelat")northEastLat: Double,
                                @Param("nelong")northEastLong: Double): List<TouristSpot>
+}
+
+@Repository
+interface SpotCongestionRepository: JpaRepository<SpotCongestion, Long> {
+    fun findBySpotId(spotId: Long): List<SpotCongestion>
 }

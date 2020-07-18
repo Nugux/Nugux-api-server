@@ -8,7 +8,8 @@ data class TouristSpotDTO(
     val shortDesc: String,
     val lat: Double,
     val long: Double,
-    val congestion: Double
+    val congestion: Double,
+    val image: String
 )
 
 data class TouristSpotDetailDTO(
@@ -69,8 +70,29 @@ data class TouristSpot(
         const val COL_LONG: String = "long"
         const val COL_CONGESTION: String = "congestion"
     }
+}
 
-    fun getStateFromAddress() = address.split(" ")[0]
+@Entity
+@Table(name = "spot_congestions", schema = "public")
+data class SpotCongestion(
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = COL_ID)
+    var id: Long = 0,
 
-    fun getCityFromAddress() = address.split(" ")[1]
+    @Column(name = COL_SPOT_ID)
+    val spotId: Long,
+
+    @Column(name = COL_CONGESTION)
+    val congestion: Double,
+
+    @Column(name = COL_DAY)
+    val day: Int
+) {
+    companion object {
+        const val COL_ID: String = "id"
+        const val COL_SPOT_ID: String = "spot_id"
+        const val COL_CONGESTION: String = "congestion"
+        const val COL_DAY: String = "day"
+    }
 }

@@ -2,6 +2,7 @@ package com.nugux.service
 
 import com.nugux.logging.ILogging
 import com.nugux.logging.LoggingImpl
+import com.nugux.repository.SpotCongestionRepository
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired

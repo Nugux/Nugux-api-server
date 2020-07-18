@@ -32,3 +32,15 @@ create table daily_spot_congestions
 
 alter table daily_spot_congestions owner to postgres;
 
+create table spot_congestions
+(
+    id serial not null
+        constraint spot_congestions_pkey
+            primary key,
+    spot_id integer,
+    congestion double precision not null,
+    day integer
+);
+
+alter table spot_congestions owner to postgres;
+
