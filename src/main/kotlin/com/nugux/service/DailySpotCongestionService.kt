@@ -19,9 +19,9 @@ class DailySpotCongestionService(private val dailySpotCongestionRepository: Dail
             northEastLong: Double,
             spotLevel: SpotLevel,
             date: Date): List<DailySpotCongestionDto> {
-        val dailySpotContestions = dailySpotCongestionRepository.findByBoundaryPositionAndSpotLevel(southWestLat, southWestLong, northEastLat, northEastLong, spotLevel)
+        val dailySpotContestionList = dailySpotCongestionRepository.findByBoundaryPositionAndSpotLevel(southWestLat, southWestLong, northEastLat, northEastLong, spotLevel)
         calendar.time = date
-        return dailySpotContestions.map { DailySpotCongestionDto(
+        return dailySpotContestionList.map { DailySpotCongestionDto(
             state = it.state,
             city = it.city,
             lat = it.lat,
