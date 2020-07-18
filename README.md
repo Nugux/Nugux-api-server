@@ -4,7 +4,7 @@
 ## Description
 - blah blah
 
-## How to build
+## How to build / How to run
 - blah blah
 
 ## License
