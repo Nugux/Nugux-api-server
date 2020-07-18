@@ -1,11 +1,10 @@
 package com.nugux.controller
 
-import com.nugux.config.DAILY_CONGESTION_URL
-import com.nugux.config.REST_API_V_1
-import com.nugux.config.TOURIST_SPOT_URL
+import com.nugux.config.*
 import com.nugux.model.DailySpotCongestionDto
 import com.nugux.model.SpotLevel
 import com.nugux.model.TouristSpotDTO
+import com.nugux.model.TouristSpotDetailDTO
 import com.nugux.service.DailySpotCongestionService
 import com.nugux.service.TouristSpotService
 import io.swagger.annotations.Api
@@ -14,10 +13,7 @@ import io.swagger.annotations.ApiParam
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
@@ -46,4 +42,14 @@ class TouristSpotController(private val touristSpotService: TouristSpotService) 
     ): ResponseEntity<List<TouristSpotDTO>> = ResponseEntity
         .status(HttpStatus.OK)
         .body(touristSpotService.get(southWestLat, southWestLong, northEastLat, northEastLong, date))
+
+    @GetMapping(ID_URL + DETAIL_URL)
+    @ApiOperation(value = "get tourist spot detail with id", response = TouristSpotDetailDTO::class)
+    fun getOneByIdV1(
+        @PathVariable("id")
+        @ApiParam(name = "tourist spot id", value = "tourist spot id")
+        id: Long
+    ): ResponseEntity<TouristSpotDetailDTO> = ResponseEntity
+        .status(HttpStatus.OK)
+        .body(touristSpotService.getOneById(id))
 }

@@ -4,7 +4,9 @@ import com.nugux.logging.ILogging
 import com.nugux.logging.LoggingImpl
 import com.nugux.logic.WeeksCongestionCalculator
 import com.nugux.model.TouristSpotDTO
+import com.nugux.model.TouristSpotDetailDTO
 import com.nugux.repository.TouristSpotRepository
+import org.apache.commons.io.IOUtils
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -28,6 +30,25 @@ class TouristSpotService(private val touristSpotRepository: TouristSpotRepositor
                 long = it.long,
                 congestion = WeeksCongestionCalculator.getWeeksCongestion(it.congestion)[DailySpotCongestionService.calendar.get(Calendar.DAY_OF_WEEK) - 1])
         }.toList()
+    }
+
+    fun getOneById(id: Long): TouristSpotDetailDTO {
+        val touristSpot = touristSpotRepository.findById(id).get()
+
+        return TouristSpotDetailDTO(
+            id = touristSpot.id,
+            name = touristSpot.name,
+            address = touristSpot.address,
+            description = touristSpot.description,
+            congestionList = WeeksCongestionCalculator.getWeeksCongestion(touristSpot.congestion),
+            image = getImgById(touristSpot.id))
+    }
+
+    private fun getImgById(id: Long): ByteArray {
+        val imgIndex = (id % 10).toInt()
+        val filePath = "/tourist_spot_img/tourist_spot_$imgIndex.jpg"
+        val `in` = this::class.java.getResourceAsStream(filePath)
+        return IOUtils.toByteArray(`in`)
     }
 
     companion object {

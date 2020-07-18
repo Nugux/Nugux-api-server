@@ -25,6 +25,7 @@ extra.apply {
     set("jtsVersion", "1.13")
     set("gsonVersion", "2.8.5")
     set("kotlinCsvVersion", "0.10.4")
+    set("apacheCommonVersion", "2.4")
 }
 
 dependencies {
@@ -42,6 +43,7 @@ dependencies {
     implementation("io.springfox:springfox-swagger-ui:${extra["swaggerVersion"]}")
     implementation("com.vividsolutions:jts:${extra["jtsVersion"]}")
     implementation("com.google.code.gson:gson:${extra["gsonVersion"]}")
+    implementation("commons-io:commons-io:${extra["apacheCommonVersion"]}")
 
     implementation("com.github.doyaaaaaken:kotlin-csv-jvm:${extra["kotlinCsvVersion"]}")
 
