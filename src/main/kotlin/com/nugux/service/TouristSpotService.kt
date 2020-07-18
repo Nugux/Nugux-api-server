@@ -49,7 +49,9 @@ class TouristSpotService(private val touristSpotRepository: TouristSpotRepositor
                 .sorted { o1, o2 -> o1.day.compareTo(o2.day) }
                 .map { it.congestion }
                 .toList(),
-            image = getImgById(touristSpot.id))
+            image = getImgById(touristSpot.id),
+            lat = touristSpot.lat,
+            long = touristSpot.long)
     }
 
     private fun getImgById(id: Long): String {

@@ -18,7 +18,9 @@ data class TouristSpotDetailDTO(
     val address: String,
     val description: String,
     val congestionList: List<Double>,
-    val image: String
+    val image: String,
+    val lat: Double,
+    val long: Double
 )
 
 
