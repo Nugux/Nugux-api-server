@@ -1,9 +1,25 @@
 package com.nugux.model
 
-import com.vividsolutions.jts.geom.Geometry
-import com.vividsolutions.jts.geom.Point
-import org.hibernate.annotations.Type
 import javax.persistence.*
+
+data class TouristSpotDTO(
+    val id: Long,
+    val name: String,
+    val shortDesc: String,
+    val lat: Double,
+    val long: Double,
+    val congestion: Double
+)
+
+data class TouristSpotDetailDTO(
+    val id: Long,
+    val name: String,
+    val address: String,
+    val description: String,
+    val congestionList: List<Double>,
+    val image: Array<Byte>
+)
+
 
 enum class SpotLevel(val value: Int) {
     STATE(0), CITY(1);

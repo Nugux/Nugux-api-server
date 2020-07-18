@@ -2,9 +2,7 @@ package com.nugux.service
 
 import com.nugux.logging.ILogging
 import com.nugux.logging.LoggingImpl
-import com.nugux.logic.BasicCongestionCalculator
 import com.nugux.logic.WeeksCongestionCalculator
-import com.nugux.model.DailySpotCongestion
 import com.nugux.model.DailySpotCongestionDto
 import com.nugux.model.SpotLevel
 import com.nugux.repository.DailySpotCongestionRepository
@@ -21,7 +19,7 @@ class DailySpotCongestionService(private val dailySpotCongestionRepository: Dail
             northEastLong: Double,
             spotLevel: SpotLevel,
             date: Date): List<DailySpotCongestionDto> {
-        val dailySpotContestions = dailySpotCongestionRepository.findByCenterAndBoundaryPositionAndSpotLevel(southWestLat, southWestLong, northEastLat, northEastLong, spotLevel)
+        val dailySpotContestions = dailySpotCongestionRepository.findByBoundaryPositionAndSpotLevel(southWestLat, southWestLong, northEastLat, northEastLong, spotLevel)
         calendar.time = date
         return dailySpotContestions.map { DailySpotCongestionDto(
             state = it.state,

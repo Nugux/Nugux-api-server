@@ -2,9 +2,12 @@ package com.nugux.controller
 
 import com.nugux.config.DAILY_CONGESTION_URL
 import com.nugux.config.REST_API_V_1
+import com.nugux.config.TOURIST_SPOT_URL
 import com.nugux.model.DailySpotCongestionDto
 import com.nugux.model.SpotLevel
+import com.nugux.model.TouristSpotDTO
 import com.nugux.service.DailySpotCongestionService
+import com.nugux.service.TouristSpotService
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiParam
@@ -18,11 +21,11 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 @RestController
-@RequestMapping(REST_API_V_1 + DAILY_CONGESTION_URL)
-@Api(value = REST_API_V_1 + DAILY_CONGESTION_URL, tags = ["Daily Congestion"])
-class DailySpotCongestionController(private val dailySpotCongestionService: DailySpotCongestionService) {
+@RequestMapping(REST_API_V_1 + TOURIST_SPOT_URL)
+@Api(value = REST_API_V_1 + TOURIST_SPOT_URL, tags = ["Tourist Spot"])
+class TouristSpotController(private val touristSpotService: TouristSpotService) {
     @GetMapping
-    @ApiOperation(value = "get daily congestion info", response = DailySpotCongestionDto::class, responseContainer = "List")
+    @ApiOperation(value = "get tourist spot info", response = TouristSpotDTO::class, responseContainer = "List")
     fun getV1(
         @RequestParam(name = "southWestLat", required = true)
         @ApiParam(name = "southWestLat", value = "south west latitude")
@@ -36,15 +39,11 @@ class DailySpotCongestionController(private val dailySpotCongestionService: Dail
         @RequestParam(name = "northEastLong", required = true)
         @ApiParam(name = "northEastLong", value = "north east longitude")
         northEastLong: Double,
-        @RequestParam(name = "spotLevel", required = true)
-        @ApiParam(name = "spotLevel", value = "spotLevel")
-        spotLevel: SpotLevel,
         @RequestParam(name = "date", required = true)
         @ApiParam(name = "date", value = "date")
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         date: Date
-    ): ResponseEntity<List<DailySpotCongestionDto>> = ResponseEntity
+    ): ResponseEntity<List<TouristSpotDTO>> = ResponseEntity
         .status(HttpStatus.OK)
-        .body(dailySpotCongestionService.get(southWestLat, southWestLong, northEastLat, northEastLong, spotLevel, date))
-
+        .body(touristSpotService.get(southWestLat, southWestLong, northEastLat, northEastLong, date))
 }
