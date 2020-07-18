@@ -44,11 +44,9 @@ class TouristSpotService(private val touristSpotRepository: TouristSpotRepositor
             image = getImgById(touristSpot.id))
     }
 
-    private fun getImgById(id: Long): ByteArray {
+    private fun getImgById(id: Long): String {
         val imgIndex = (id % 10).toInt()
-        val filePath = "/tourist_spot_img/tourist_spot_$imgIndex.jpg"
-        val `in` = this::class.java.getResourceAsStream(filePath)
-        return IOUtils.toByteArray(`in`)
+        return "/tourist_spot_img/tourist_spot_$imgIndex.jpg"
     }
 
     companion object {
