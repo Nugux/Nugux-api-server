@@ -33,6 +33,7 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.postgresql:postgresql:${extra["postgresqlVersion"]}")
     implementation("org.hibernate:hibernate-spatial:${extra["hibernateVersion"]}")
     implementation("org.hibernate:hibernate-spatial:${extra["hibernateVersion"]}")
