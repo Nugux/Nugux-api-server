@@ -9,7 +9,8 @@ create table tourist_spots
     description varchar,
     lat double precision not null,
     long double precision not null,
-    congestion double precision default 0 not null
+    congestion double precision default 0 not null,
+	premium boolean default false
 );
 
 alter table tourist_spots owner to postgres;

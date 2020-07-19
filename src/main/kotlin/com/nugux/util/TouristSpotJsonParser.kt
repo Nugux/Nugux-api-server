@@ -30,6 +30,7 @@ class TouristSpotJsonParser {
             val description = getStringValue(jsonObject, "description")
             val lat = getStringValue(jsonObject, "lat1").toDouble()
             val long = getStringValue(jsonObject, "long1").toDouble()
+            val congestion = Random.nextDouble(1.0, 3.5)
 
             TouristSpot(
                 name = name,
@@ -38,7 +39,8 @@ class TouristSpotJsonParser {
                 description = description,
                 lat = lat,
                 long = long,
-                congestion = Random.nextDouble(1.0, 3.5)
+                congestion = congestion,
+                premium = (congestion < 1.5 || congestion > 3.0)
             )
         }.toList()
     }
