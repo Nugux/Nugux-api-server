@@ -9,7 +9,8 @@ data class TouristSpotDTO(
     val lat: Double,
     val long: Double,
     val congestion: Double,
-    val image: String
+    val image: String,
+    val premium: Boolean
 )
 
 data class TouristSpotDetailDTO(
@@ -60,7 +61,10 @@ data class TouristSpot(
     val long: Double,
 
     @Column(name = COL_CONGESTION)
-    val congestion: Double
+    val congestion: Double,
+
+    @Column(name = COL_PREMIUM)
+    val premium: Boolean
 ) {
     companion object {
         const val COL_ID: String = "id"
@@ -71,6 +75,7 @@ data class TouristSpot(
         const val COL_LAT: String = "lat"
         const val COL_LONG: String = "long"
         const val COL_CONGESTION: String = "congestion"
+        const val COL_PREMIUM: String = "premium"
     }
 }
 

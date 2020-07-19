@@ -8,7 +8,6 @@ import com.nugux.model.TouristSpotDTO
 import com.nugux.model.TouristSpotDetailDTO
 import com.nugux.repository.SpotCongestionRepository
 import com.nugux.repository.TouristSpotRepository
-import org.apache.commons.io.IOUtils
 import org.springframework.stereotype.Service
 import java.util.*
 import kotlin.streams.toList
@@ -33,7 +32,8 @@ class TouristSpotService(private val touristSpotRepository: TouristSpotRepositor
                 lat = it.lat,
                 long = it.long,
                 congestion = WeeksCongestionCalculator.getWeeksCongestion(it.congestion)[DailySpotCongestionService.calendar.get(Calendar.DAY_OF_WEEK) - 1],
-                image = getImgById(it.id))
+                image = getImgById(it.id),
+                premium = it.premium)
         }.toList()
     }
 

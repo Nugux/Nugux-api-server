@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface TouristSpotRepository: JpaRepository<TouristSpot, Long> {
-    @Query("SELECT ts FROM TouristSpot ts WHERE :nelat <= ts.lat AND ts.lat <= :swlat AND :nelong <= ts.long AND ts.long <= :swlong")
+    @Query("SELECT ts FROM TouristSpot ts WHERE :nelat <= ts.lat AND ts.lat <= :swlat AND :nelong <= ts.long AND ts.long <= :swlong ORDER BY ts.premium DESC")
     fun findByBoundaryPosition(@Param("swlat")southWestLat: Double,
                                @Param("swlong")southWestLong: Double,
                                @Param("nelat")northEastLat: Double,
