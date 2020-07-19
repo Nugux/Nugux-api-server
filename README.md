@@ -10,5 +10,6 @@
 ## How to build / How to run
 1. Gradle build를 통하여 complie & build
 2. TouristSpotRepositoryTest, CongestionCalculateServiceTest의 Junit 테스트를 실행하여 관광지 및 혼잡도 데이터 생성
-3. Tmap API에서 발급받은 key.property를 root directory에 저장
+3. Project Root에 key.property 생성
+3.1. ```ProjectKey:<TMap API Key>``` 와 같이, 발급받은 T-map API Key 입력
 4. Spring boot main application 구동
