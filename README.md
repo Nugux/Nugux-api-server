@@ -2,9 +2,10 @@
 
 
 ## Description
-- 관광지 API와 TMap API를 활용한 관광지 정보 및 혼잡도 API 제공
+- 관광지 API와 TMap API를 활용한 관광지 정보 및 혼잡도 데이터 수집 및 API 제공
     1. 위도, 경도 Boundary내의 특별시,도 / 시군구 별 혼잡도 정보 제공 API
     2. 위도, 경도 Boundary내의 관광지 혼잡도 및 상세 정보 제공 API
+    3. 자동으로 데이터 
 
 ## How to build / How to run
 1. Gradle build를 통하여 complie & build
